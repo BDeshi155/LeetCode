@@ -28,37 +28,43 @@ Constraints:
 
 
 Soulution Code::
-public int numIdenticalPairs(int[] nums){
-	int[] count = new int[100];
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int[] count =  new int[100];
 
-	for (int num:nums){
-		count[num]++ 
+        for (int i = 0;i<nums.length;i++) {
+            int num = nums[i];
+
+            count[num] = count[num] + 1;
+        }
+        int totalCount = 0;
+
+        for(int i = 0; i < count.length;i++){
+            int j = count[i];
+            totalCount = totalCount + (((j)*(j-1))/2);
+        }
+        return totalCount;
+    }
 }
-}
 
-int totalCount = 0;
+public class Main{
+    public static void main(String[] args){
 
+        Solution solution = new Solution();
 
-for (int i : count){
-	totalCount = totalCount + (((i)*(i-1))/2);
-}
-
-return totalCount;
-
-public class Main {
-    public static void main(String[] args) {
-        // Example 1
-        int[] nums1 = {1, 2, 3, 1, 1, 3};
-        int result1 = numIdenticalPairs(nums1);
+        //Example 1
+        int[] nums1 = {1,2,3,1,1,3};
+        int result1 = solution.numIdenticalPairs(nums1);
         System.out.println("Example 1: " + result1);
 
-        // Example 2
-        int[] nums2 = {1, 1, 1, 1};
-        int result2 = numIdenticalPairs(nums2);
-        System.out.println("Example 2: " + result2);
+        //Example 2
+        int[] nums2 = {1,1,1,1};
+        int result2 = solution.numIdenticalPairs(nums2);
+        System.out.println(result2);
 
-        // Example 3
-        int[] nums3 = {1, 2, 3};
-        int result3 = numIdenticalPairs(nums3);
-        System.out.println("Example 3: " + result3);
+        //Example 3
+        int[] nums3 = {1,2,3};
+        int result3 = solution.numIdenticalPairs(nums3);
+        System.out.println(result3);
     }
+}
